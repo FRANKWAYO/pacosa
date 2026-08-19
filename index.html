@@ -1,97 +1,21 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>coder-app-name</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      /* 内联样式确保主题色立即生效，避免闪烁 */
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-      }
-      html.light,
-      html.light body {
-        background-color: #ffffff !important;
-        color: #000000;
-      }
-      html.dark,
-      html.dark body {
-        background-color: #1a1a1a !important;
-        color: #ffffff;
-      }
-    </style>
-    <script>
-      // 在 React 加载前立即设置主题，避免闪烁
-      (function () {
-        const isInIframe = window.self !== window.top;
-
-        function applyThemeToDOM(theme) {
-          document.documentElement.classList.remove("light", "dark");
-          document.documentElement.classList.add(theme);
-          document.documentElement.setAttribute("data-theme", theme);
-        }
-
-        if (isInIframe) {
-          // 监听父窗口主动推送的主题消息
-          window.addEventListener("message", function (event) {
-            if (event.data && typeof event.data.theme === "string") {
-              const theme = event.data.theme;
-              if (theme === "light" || theme === "dark") {
-                applyThemeToDOM(theme);
-              }
-            }
-          });
-        } else {
-          // 非 iframe 环境，使用默认 light 主题
-          applyThemeToDOM("light");
-        }
-      })();
-    </script>
-      <script>
-      (function () {
-        if (window.self === window.top) return;
-        var reported = {};
-        window.addEventListener("error", function (event) {
-          // 资源加载失败的 error 事件没有 message，此处仅上报 JS 运行时错误
-          if (!event || !event.message) return;
-          var key =
-            event.message + "|" + (event.filename || "") + "|" + (event.lineno || 0);
-          if (reported[key]) return; // 相同错误只上报一次，避免渲染循环刷屏
-          reported[key] = true;
-          try {
-            window.parent.postMessage(
-              {
-                type: "sandbox-runtime-error",
-                payload: {
-                  message: String(event.message).slice(0, 500),
-                  filename: event.filename || "",
-                  lineno: event.lineno || 0,
-                  colno: event.colno || 0,
-                  stack:
-                    event.error && event.error.stack
-                      ? String(event.error.stack).slice(0, 2000)
-                      : ""
-                }
-              },
-              "*"
-            );
-          } catch (e) {
-            /* 上报失败不影响页面运行 */
-          }
-        });
-      })();
-    </script>
+    <title>PACOSA — Cadets Association | Discipline • Leadership • Unity • Service • Excellence</title>
+    <meta name="description" content="PACOSA is the national cadets association connecting former and serving cadets through discipline, leadership, unity, service and excellence." />
+    <meta name="keywords" content="PACOSA, cadets association, cadet training, leadership development, community service, youth empowerment" />
+    <meta property="og:title" content="PACOSA — Cadets Association" />
+    <meta property="og:description" content="Building Leaders. Strengthening Unity. Serving Our Communities." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 56 14v20c0 14-10 22-24 26C18 56 8 48 8 34V14Z' fill='%2320301F'/%3E%3Cpath d='M32 10 50 17.5v16c0 10.5-7.5 16.8-18 20-10.5-3.2-18-9.5-18-20v-16Z' fill='%232B3E2B'/%3E%3Cpath d='m32 17 3.2 6.8 7.3.9-5.4 5 1.4 7.2L32 33.3l-6.5 3.6 1.4-7.2-5.4-5 7.3-.9Z' fill='%23C29B3C'/%3E%3Cpath d='m22 42 10-5 10 5v3H22zM22 47h20v3H22z' fill='%23C29B3C'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,11 +1,12 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, CalendarDays, Eye, User, Link2, Check } from "lucide-react";
 import { useStore, fmtDate, sanitizeHtml } from "../lib/store";
 import { Reveal, SectionHead, Btn, SmartImg, Pill, EmptyState } from "../components/ui";
 import { NEWS_CATEGORIES } from "../lib/types";
 import type { Article } from "../lib/types";
-import { PageHero, NotFound } from "./AboutLeadership";
+import { PageHero } from "./AboutLeadership";
+import { NotFound } from "./ProgramsEvents";
 
 export function ArticleCard({ a, delay = 0 }: { a: Article; delay?: number }) {
   return (
@@ -79,8 +80,12 @@ export function NewsDetail({ article }: { article?: Article }) {
   const { id } = useParams();
   const [copied, setCopied] = useState(false);
   const a = article ?? db.news.find(x => x.id === id);
-  useMemo(() => {
-    if (a && !article) update(d => ({ ...d, news: d.news.map(n => n.id === a.id ? { ...n, views: n.views + 1 } : n) }));
+  const counted = useRef(false);
+  useEffect(() => {
+    if (a && !article && !counted.current) {
+      counted.current = true;
+      update(d => ({ ...d, news: d.news.map(n => n.id === a.id ? { ...n, views: n.views + 1 } : n) }));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!a) return <NotFound title="Article not found" />;

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Camera, Play, ArrowRight, Images, CalendarDays } from "lucide-react";
+import { Camera, Play, ArrowRight, Image as Images, CalendarDays } from "lucide-react";
 import { useStore, fmtDate } from "../lib/store";
 import { Reveal, SmartImg, Lightbox, Modal, Pill, EmptyState } from "../components/ui";
 import type { Video } from "../lib/types";
-import { PageHero, NotFound } from "./AboutLeadership";
+import { PageHero } from "./AboutLeadership";
+import { NotFound } from "./ProgramsEvents";
 
 /* ================= PHOTO GALLERY ================= */
 export function GalleryPage() {
